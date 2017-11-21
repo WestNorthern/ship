@@ -9,6 +9,56 @@
   </head>
 
   <body>
+
+		<ul id="user-dropdown" class="dropdown-content">
+			<li><%= link_to "My Profile", current_user %></li>
+			<li class="divider"></li>
+			<li><%= link_to "Log Out", user_registration_path, method: :delete %></li>
+		  <li class="divider"></li>
+		  <li><%= link_to "New Post" %></li>
+		</ul>
+	  <div class="navbar-fixed">
+		  <nav class="blue accent-2" >
+		    <div class="nav-wrapper">
+		      <div class="row">
+		        <div class="col s2">
+		          <ul class="left">
+		          <li><a href="#">Rycipes</a></li>
+		          </ul>
+		        </div>
+		        <div class="col s6">
+		          <form class="search-input">
+		            <div class="input-field">
+		            <input id="search" type="search" />
+		            <label for="search"><i class="material-icons">search</i></label>
+		            </div>
+		          </form>
+		        </div>
+		        <div class="col s4">
+		          <ul class="right">
+		            <% if user_signed_in? %>
+		      				<li>
+		      					<a class="dropdown-button user-hub" href="#!" data-activates="user-dropdown" style="min-width: 130px;">
+		      						<%= current_user.full_name %>
+		      
+		      						<i class="material-icons right">arrow_drop_down</i>
+		      					</a>
+		      					<li> <%= link_to "Index", users_path %></li>
+		      				</li>
+	        			<% else %>
+	        				<li><%= link_to "Log In", new_user_session_path %></li>
+	        				<li><%= link_to "Sign Up", new_user_registration_path %></li>
+	        			<% end %>
+		          </ul>
+		        </div>
+		      </div>
+		    </div>
+		  </nav>
+		</div>
+
+  	<%= link_to "Browse Recipes" %>
+  	<div class="container">
+
   	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
