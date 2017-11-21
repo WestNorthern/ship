@@ -3,3 +3,12 @@
 <h3>Last Name: <%=  @user.last_name %></h3>
 <h3>Email: <%= @user.email %></h3>
 <h3>Id: <%= @user.id %></h3>
+<%= image_tag @user.avatar.url %>
+
+
+<br>
+<p><b>Bold</b>	</p>
+<br>
+<% if @user.id == current_user.id %>
+<%= link_to "Edit User", edit_user_registration_path %>
+<% end %>
