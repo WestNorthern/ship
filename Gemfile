@@ -58,3 +58,10 @@ gem 'devise'
 gem 'restful_routing'
 
 gem "paperclip", "~> 5.0.0"
+
+gem 'materialize-sass'
+
+gem 'jquery-rails'
+
+gem 'jquery-ui-rails'
+
