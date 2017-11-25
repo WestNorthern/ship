@@ -46,9 +46,6 @@
       <p>Max Capacity: <%= boat.capacity %></p>
       <p>Port of Origin: <%= boat.home_port %></p>
       <p>Owner: <%= boat.user.full_name %></p>
-      <% if @user.id != current_user.id %>
-      <%= link_to "#{boat.user.first_name}'s Profile", boat.user %>
-      <% end %>
     </div>
   </div>
 	
