@@ -28,7 +28,12 @@
 
 <hr>
 <hr>
-<h1>Boats</h1>
+<% if @user.id == current_user.id %>
+	<h1>Your Boats</h1>
+<% end %>
+<% if @user.id != current_user.id %>
+	<h1><%= @user.first_name %>'s Boats</h1>
+<% end %>
 <hr>
 <hr>
 <br>
@@ -60,7 +65,12 @@
 </div>
 <hr>
 <hr>
-<h1>Jobs</h1>
+<% if @user.id == current_user.id %>
+	<h1>Your Jobs</h1>
+<% end %>
+<% if @user.id != current_user.id %>
+	<h1><%= @user.first_name %>'s Jobs</h1>
+<% end %>
 <hr>
 <hr>
 <div class="jobs">
@@ -104,14 +114,3 @@
     </div>
   <% end %>
 </div>
-
-<style>
-.parallax { 
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-</style>
