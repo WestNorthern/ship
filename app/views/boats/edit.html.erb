@@ -1,0 +1,95 @@
+
+
+
+
+
+
+<% if params[:edit_controller] == "edit" %>
+	<h1>Edit Boat</h1>
+
+	<%= form_with model: @boat, local: true, url: boat_path, html: { multipart: true } do |f| %>
+
+	  <% if @boat.errors.any? %>
+
+	    <div id="error_details">
+
+	      <h2><%= pluralize(@boat.errors.count, "error") %> prohibited this boat from being saved:</h2>
+
+	      <ul>
+
+		      <% @boat.errors.full_messages.each do |message| %>
+
+		        <li><%= message %></li>
+
+		      <% end %>
+
+	      </ul>
+
+	    </div>
+
+	  <% end %>
+
+		<%= f.hidden_field :user_id, value: current_user.id %>
+		<%= f.text_field :name, placeholder: 'Ship Name' %>
+		<%= f.text_field :capacity, placeholder: 'Capacity' %>
+		<%= f.text_field :home_port, placeholder: 'Port of Origin' %>
+
+		<br>
+		<br>
+
+		<%= f.file_field :avatar, :class => 'btn waves-effect waves-light green darken-1' %>
+
+		
+
+		<%= f.label :avatar, "You must include a glorious photograph..." %>
+
+		<br>
+		<br>
+
+
+		<%= f.select(:location, @locations, {}, { :class => 'btn waves-effect waves-light cyan darken-1' }) %>
+
+		<br>
+		<br>
+
+		<%= f.submit "Update Ship", :class => "btn waves-effect waves-light blue" %>
+
+	<% end %>
+
+<% end %>
+ 
+ <br>
+ <hr>
+ <br>
+
+<button class="delete-boat-button btn waves-effect waves-light blue">Sink Ship</button>
+
+<div class="delete-boat" style="display:none;">
+	<h1>Delete Boat</h1>
+
+  <div class="col s12 m7">
+    <h2 class="header">Delete: <%= @boat.name %></h2>
+    <div class="card horizontal">
+      <div class="card-image">
+        <%= image_tag @boat.avatar.url %>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>This will sink <%= @boat.name %> to the depths of the sea...</p>
+        </div>
+        <div class="card-action">
+          <%= link_to "Remove Ship From Fleet", @boat, method: :delete, :class => 'destroy_boat', remote: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	$(function(){
+		$('.delete-boat-button').on('click', function(){
+			$('.delete-boat').show();
+		});
+
+	});
+</script>

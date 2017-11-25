@@ -11,11 +11,15 @@
   <body>
 
 		<ul id="user-dropdown" class="dropdown-content">
+			<li class="divider"></li>
 			<li><%= link_to "My Profile", current_user %></li>
 			<li class="divider"></li>
 			<li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
 		  <li class="divider"></li>
-		  <li><%= link_to "New Post" %></li>
+		  <li><%= link_to "Create New Boat" %></li>
+		  <li class="divider"></li>
+		  <li><%= link_to "Create New Job" %></li>
+		  <li class="divider"></li>
 		</ul>
 	  <div class="navbar-fixed">
 		  <nav class="red accent-2" >
@@ -37,7 +41,8 @@
 		      
 		      						<i class="material-icons right">arrow_drop_down</i>
 		      					</a>
-		      					<li> <%= link_to "Index", users_path %></li>
+		      					<li> <%= link_to "User Index", users_path %></li>
+		      					<li> <%= link_to "Boats Index", boats_path %></li>
 		      				</li>
 	        			<% else %>
 	        				<li><%= link_to "Log In", new_user_session_path %></li>
