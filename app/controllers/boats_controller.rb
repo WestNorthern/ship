@@ -29,7 +29,6 @@ class BoatsController < ApplicationController
   end
 
   def edit
-    params[:edit_controller] = "edit"
   end
 
   def update

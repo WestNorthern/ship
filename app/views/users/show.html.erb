@@ -1,57 +1,100 @@
 
-  <div class="card medium">
-    <div class="card-image waves-effect waves-block waves-light">
-      <%= image_tag @user.avatar.url %>
-    </div>
-    <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4"><h3><%= @user.full_name %></h3><i class="material-icons right">more_vert</i></span>
-      <% if @user.id == current_user.id %>
-				<p><%= link_to "Create New Boat", new_boat_path %></p>
-				<p><%= link_to "Edit User", edit_user_registration_path %></p>
-				<p><%= link_to "Delete User", user_session_path, method: :delete %></p>
-			<% end %>
-
-    </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4"><%= @user.full_name %><i class="material-icons right">close</i></span>
-      <h3>First Name: <%= @user.first_name %></h3>
-			<h3>Last Name: <%=  @user.last_name %></h3>
-			<h3>Email: <%= @user.email %></h3>
-    </div>
+<div class="card medium">
+  <div class="card-image waves-effect waves-block waves-light">
+    <%= image_tag @user.avatar.url %>
   </div>
+  <div class="card-content">
+    <span class="card-title activator grey-text text-darken-4"><h3><%= @user.full_name %></h3><i class="material-icons right">more_vert</i></span>
+    <% if @user.id == current_user.id %>
+			<p><%= link_to "Create New Boat", new_boat_path %></p>
+			<p><%= link_to "Create New Job", new_job_path %></p>
+			<p><%= link_to "Edit User", edit_user_registration_path %></p>
+			<p><%= link_to "Delete User", user_session_path, method: :delete %></p>
+		<% end %>
 
-  <br>
+  </div>
+  <div class="card-reveal">
+    <span class="card-title grey-text text-darken-4"><%= @user.full_name %><i class="material-icons right">close</i></span>
+    <h3>First Name: <%= @user.first_name %></h3>
+		<h3>Last Name: <%=  @user.last_name %></h3>
+		<h3>Email: <%= @user.email %></h3>
+		<% if @user.id == current_user.id %>
+			<p><%= link_to "Edit User", edit_user_registration_path %></p>
+		<% end %>
+  </div>
+</div>
 
-  <hr>
-  <hr>
+<br>
 
-  <div class="boats">
-	
+<hr>
+<hr>
+
+<div class="boats">
+
 	<% @user.boats.all.each do |boat| %>
 
 		<div class="boat">
 			<div class="card small">
-    <div class="card-image waves-effect waves-block waves-light">
-      <%= image_tag boat.avatar.url, :class => 'activator' %>
-    </div>
-    <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4"><%= boat.name %><i class="material-icons right">more_vert</i></span>
-      <% if @user.id == current_user.id %>
-      	<p><%= link_to "Edit Boat", edit_boat_path( boat.id ) %></p>
-      <% end %>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4"><%= boat.name %><i class="material-icons right">close</i></span>
-      <p>Current Locaton: <%= boat.location %></p>
-      <p>Max Capacity: <%= boat.capacity %></p>
-      <p>Port of Origin: <%= boat.home_port %></p>
-      <p>Owner: <%= boat.user.full_name %></p>
-    </div>
-  </div>
-	
+  			<div class="card-image waves-effect waves-block waves-light">
+    			<%= image_tag boat.avatar.url, :class => 'activator' %>
+  			</div>
+  			<div class="card-content">
+    			<span class="card-title activator grey-text text-darken-4"><%= boat.name %><i class="material-icons right">more_vert</i></span>
+    			<% if @user.id == current_user.id %>
+    				<p><%= link_to "Edit Boat", edit_boat_path(boat.id) %></p>
+    			<% end %>
+  			</div>
+  			<div class="card-reveal">
+    			<span class="card-title grey-text text-darken-4"><%= boat.name %><i class="material-icons right">close</i></span>
+    			<p>Current Locaton: <%= boat.location %></p>
+    			<p>Max Capacity: <%= boat.capacity %></p>
+    			<p>Port of Origin: <%= boat.home_port %></p>
+    			<p>Owner: <%= boat.user.full_name %></p>
+  			</div>
+			</div>
 		</div>
-
-
 	<% end %>
+</div>
 
+
+<div class="jobs">
+
+  <% @user.jobs.each do |job| %>
+
+    <div class="job">
+    	<div class="card small">
+    		<div class="card-image waves-effect waves-block waves-light">
+      		<%= image_tag job.avatar.url, :class => 'activator' %>
+    		</div>
+    		<div class="card-content">
+      		<span class="card-title activator grey-text text-darken-4"><%= job.job_name %><i class="material-icons right">more_vert</i></span>
+      		<p><a href="#">Maybe Put Assigned Boats Info Here</a></p>
+      		<% if @user.id == current_user.id %>
+      			<p><%= link_to "Edit Job", edit_job_path(job.id) %></p>
+      		<% end %>
+    		</div>
+    		<div class="card-reveal">
+      		<span class="card-title grey-text text-darken-4"><%= job.job_name %><i class="material-icons right">close</i></span>
+          <h3><%= job.job_name %></h3>
+          <% if @user.id == current_user.id %>
+          	<p><b>Commisioned By You</b></p>
+          <% end %>
+          <% if @user.id != current_user.id %>
+						<p><b>Commisioned By <%= link_to "#{job.user.full_name}", job.user %></b></p>
+					<% end %>
+          <small>Created at <%= job.created_at %></small>
+          <hr>
+          <p>Amount of containers to be shipped: <b> <%= job.containers %> </b> </p>
+          <hr>
+          <p><%= job.job_description %></p>
+          <hr>
+          <p>Cost: <%= job.cost %></p>
+          <hr>
+          <br>
+          <p>Origin: <%= job.origin %></p>
+          <p>Destination: <%= job.destination %></p>
+    		</div>
+    	</div>
+    </div>
+  <% end %>
 </div>

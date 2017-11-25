@@ -1,0 +1,45 @@
+
+
+<div class="jobs">
+
+  <% @jobs.each do |job| %>
+
+    <div class="job">
+    	<div class="card small">
+    		<div class="card-image waves-effect waves-block waves-light">
+      		<%= image_tag job.avatar.url, :class => 'activator' %>
+    		</div>
+    		<div class="card-content">
+      		<span class="card-title activator grey-text text-darken-4"><%= job.job_name %><i class="material-icons right">more_vert</i></span>
+      		<p><a href="#">Maybe Put Assigned Boats Info Here</a></p>
+    		</div>
+    		<div class="card-reveal">
+      		<span class="card-title grey-text text-darken-4"><%= job.job_name %><i class="material-icons right">close</i></span>
+          <h3><%= job.job_name %></h3>
+          <% if job.user.id == current_user.id %>
+            <p><b>Commisioned By You</b></p>
+          <% end %>
+          <% if job.user.id != current_user.id %>
+            <p><b>Commisioned By <%= link_to "#{job.user.full_name}", job.user %></b></p>
+          <% end %>
+          <small>Created at <%= job.created_at %></small>
+          <hr>
+          <p>Amount of containers to be shipped: <b> <%= job.containers %> </b> </p>
+          <hr>
+          <p><%= job.job_description %></p>
+          <hr>
+          <p>Cost: <%= job.cost %></p>
+          <hr>
+          <br>
+          <p>Origin: <%= job.origin %></p>
+          <p>Destination: <%= job.destination %></p>
+          <% if job.user.id == current_user.id %>
+            <p><%= link_to "Edit Job", edit_job_path(job.id) %></p>
+          <% end %>
+    		</div>
+    	</div>
+    </div>
+
+  <% end %>
+
+</div>
