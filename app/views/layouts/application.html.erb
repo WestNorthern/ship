@@ -18,7 +18,7 @@
 		  <li class="divider"></li>
 		  <li><%= link_to "Create New Boat", new_boat_path %></li>
 		  <li class="divider"></li>
-		  <li><%= link_to "Create New Job" %></li>
+		  <li><%= link_to "Create New Job", new_job_path %></li>
 		  <li class="divider"></li>
 		</ul>
 	  <div class="navbar-fixed">
@@ -43,6 +43,7 @@
 		      					</a>
 		      					<li> <%= link_to "User Index", users_path %></li>
 		      					<li> <%= link_to "Boats Index", boats_path %></li>
+		      					<li> <%= link_to "Jobs Index", jobs_path %></li>
 		      				</li>
 	        			<% else %>
 	        				<li><%= link_to "Log In", new_user_session_path %></li>

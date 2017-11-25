@@ -1,2 +1,58 @@
-<h1>Jobs#new</h1>
-<p>Find me in app/views/jobs/new.html.erb</p>
+<h1>Create a New Job</h1>
+
+
+<%= form_with model: @job, local: true, url: jobs_path, html: { multipart: true } do |f| %>
+
+  <% if @job.errors.any? %>
+
+    <div id="error_details">
+
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+
+	      <% @job.errors.full_messages.each do |message| %>
+
+	        <li><%= message %></li>
+
+	      <% end %>
+
+      </ul>
+
+    </div>
+
+  <% end %>
+
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.text_field :job_name, placeholder: 'Title of Job' %>
+	<%= f.text_area :job_description, placeholder: 'Description of Job' %>
+
+	<br>
+
+	<%= f.label :origin, "Select Origin Port" %>
+	<%= f.select(:origin, @locations, {}, { :class => 'btn waves-effect waves-light cyan darken-1' }) %>
+
+	<br>
+	<br>
+
+	<%= f.label :destination, "Select Destination Port" %>
+	<%= f.select(:destination, @locations, {}, { :class => 'btn waves-effect waves-light cyan darken-1' }) %>
+
+	<br>
+	
+	<%= f.text_field :containers, placeholder: 'Amount of Containers to be Shipped' %>
+	<%= f.text_field :cost, placeholder: 'Cost of Job' %>
+
+	<br>
+	<br>
+
+	<%= f.file_field :avatar, :class => 'btn waves-effect waves-light green darken-1' %>
+
+	<%= f.label :avatar, "You must include a glorious photograph..." %>
+
+	<br>
+	<br>
+
+	<%= f.submit "Add Job To Post Board", :class => "btn waves-effect waves-light blue darken-3" %>
+
+<% end %>

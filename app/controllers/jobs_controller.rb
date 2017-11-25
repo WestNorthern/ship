@@ -9,9 +9,22 @@ class JobsController < ApplicationController
   end
 
   def new
+    @job = Job.new
   end
 
   def create
+    @job = Job.create( job_params )
+    @job.user_id = current_user.id
+
+    respond_to do |format|
+      if @job.save
+        format.html { redirect_to @job, notice: 'Job was successfully posted.' }
+        format.json { render :show, status: :created, location: @job }
+      else
+        format.html { render :new }
+        format.json { render json: @job.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit

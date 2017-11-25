@@ -3,7 +3,7 @@ class Boat < ApplicationRecord
 
 	belongs_to :user
 	has_many :boat_jobs
-	has_many :jobs :through => :boat_jobs
+	has_many :jobs, :through => :boat_jobs
 
 
 	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
