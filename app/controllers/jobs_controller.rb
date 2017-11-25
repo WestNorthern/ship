@@ -6,6 +6,7 @@ class JobsController < ApplicationController
   end
 
   def index
+    @jobs = Job.all
   end
 
   def new
@@ -31,9 +32,24 @@ class JobsController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @job.update(boat_params)
+        format.html { redirect_to @job, notice: 'Job details were successfully updated.' }
+        format.json { render :show, status: :ok, location: @job }
+      else
+        format.html { render :edit }
+        format.json { render json: @job.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    @job.destroy
+
+    respond_to do |format|
+      format.html { redirect_to jobs_url, notice: 'Job was obliterated.' }
+      format.json { head :no_content }
+    end
   end
 
 
