@@ -1,4 +1,36 @@
 
+<h1>Available Jobs</h1>
+
+<table class="jobs-table responsive-table highlight">
+  <thead>
+    <tr>
+        <th>Job Name</th>
+        <th>Number of Containers</th>
+        <th>Cost (₪)</th>
+        <th>Poster</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+    <tr class="job-row">
+      <td><%= job.job_name %></td>
+      <td><%= job.containers %> Containers</td>
+      <td>₪ <%= job.cost %>.00</td>
+      <td><%= link_to "#{job.user.full_name}", job.user %></td>
+    </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<br>
+<br>
+<hr>
+<hr>
+
+<h1></h1>
+
 
 <div class="jobs">
 
