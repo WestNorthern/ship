@@ -1,5 +1,44 @@
 
-<h1>This is the Boat Index</h1>
+<h1>Available Boats</h1>
+
+<table class="boats-table responsive-table highlight">
+  <thead>
+    <tr>
+        <th>Boat Name</th>
+        <th>Capacity</th>
+        <th>Current Location</th>
+        <th>Owner</th>
+        <th>Apply to Job</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @boats.each do |boat| %>
+    <tr class="boat-row i-couldnt-help-it">
+      <td><%= link_to "#{boat.name}", boat %></td>
+      <td>Capacity: <%= boat.capacity %></td>
+      <td>Current Location: <%= boat.location %></td>
+      <td><%= link_to "#{boat.user.full_name}", boat.user %></td>
+      <td>
+      	<div class="input-field col s10">
+      		<select>
+      			<option value="" disabled selected>Choose a Job</option>
+      			<% @jobs.each do |job| %>
+				  		<option value="<%= job.id %>"><%= job.job_name %></option>
+				  	<% end %>
+					</select>
+			</div>
+      </td>
+    </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<br>
+<br>
+<hr>
+<hr>
 
 
 <div class="boats">
@@ -29,3 +68,10 @@
 	<% end %>
 
 </div>
+
+<script>
+$(document).ready(function() {
+  $('select').material_select();
+});
+</script>
+

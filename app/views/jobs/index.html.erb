@@ -6,7 +6,7 @@
     <tr>
         <th>Job Name</th>
         <th>Number of Containers</th>
-        <th>Cost (₪)</th>
+        <th>Cost</th>
         <th>Poster</th>
     </tr>
   </thead>
@@ -14,7 +14,7 @@
   <tbody>
     <% @jobs.each do |job| %>
     <tr class="job-row">
-      <td><%= job.job_name %></td>
+      <td><%= link_to "#{job.job_name}", job %></td>
       <td><%= job.containers %> Containers</td>
       <td>₪ <%= job.cost %>.00</td>
       <td><%= link_to "#{job.user.full_name}", job.user %></td>
