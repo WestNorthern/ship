@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :boats
   has_many :jobs
 
+  validates :email, uniqueness: true
 
   def full_name
 		first_name + ' ' + last_name

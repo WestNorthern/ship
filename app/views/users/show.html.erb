@@ -28,7 +28,15 @@
 
 <hr>
 <hr>
-
+<% if @user.id == current_user.id %>
+	<h1>Your Boats</h1>
+<% end %>
+<% if @user.id != current_user.id %>
+	<h1><%= @user.first_name %>'s Boats</h1>
+<% end %>
+<hr>
+<hr>
+<br>
 <div class="boats">
 
 	<% @user.boats.all.each do |boat| %>
@@ -36,7 +44,7 @@
 		<div class="boat">
 			<div class="card small">
   			<div class="card-image waves-effect waves-block waves-light">
-    			<%= image_tag boat.avatar.url, :class => 'activator' %>
+    			<%= image_tag boat.avatar.url, :class => 'activator parallax' %>
   			</div>
   			<div class="card-content">
     			<span class="card-title activator grey-text text-darken-4"><%= boat.name %><i class="material-icons right">more_vert</i></span>
@@ -55,8 +63,16 @@
 		</div>
 	<% end %>
 </div>
-
-
+<hr>
+<hr>
+<% if @user.id == current_user.id %>
+	<h1>Your Jobs</h1>
+<% end %>
+<% if @user.id != current_user.id %>
+	<h1><%= @user.first_name %>'s Jobs</h1>
+<% end %>
+<hr>
+<hr>
 <div class="jobs">
 
   <% @user.jobs.each do |job| %>

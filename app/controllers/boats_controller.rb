@@ -4,6 +4,7 @@ class BoatsController < ApplicationController
 
   def index
     @boats = Boat.all
+    @jobs = Job.all
   end
 
   def show

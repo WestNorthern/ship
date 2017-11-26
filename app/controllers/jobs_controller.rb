@@ -7,6 +7,7 @@ class JobsController < ApplicationController
 
   def index
     @jobs = Job.all
+    @boats = Boat.all
   end
 
   def new
@@ -33,7 +34,7 @@ class JobsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @job.update(boat_params)
+      if @job.update(job_params)
         format.html { redirect_to @job, notice: 'Job details were successfully updated.' }
         format.json { render :show, status: :ok, location: @job }
       else

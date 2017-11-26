@@ -1,4 +1,47 @@
 
+<h1>Available Jobs</h1>
+
+<table class="jobs-table responsive-table highlight">
+  <thead>
+    <tr>
+        <th>Job Name</th>
+        <th>Number of Containers</th>
+        <th>Cost</th>
+        <th>Poster</th>
+        <th>Hire a Boat</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+    <tr class="job-row">
+      <td><%= link_to "#{job.job_name}", job %></td>
+      <td><%= job.containers %> Containers</td>
+      <td>₪ <%= job.cost %>.00</td>
+      <td><%= link_to "#{job.user.full_name}", job.user %></td>
+      <td>
+        <div class="input-field col s10">
+          <select>
+            <option value="" disabled selected>Hire a Boat</option>
+            <% @boats.each do |boat| %>
+              <option value="<%= boat.id %>"><%= boat.name %></option>
+            <% end %>
+          </select>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<br>
+<br>
+<hr>
+<hr>
+
+<h1></h1>
+
 
 <div class="jobs">
 
@@ -43,3 +86,10 @@
   <% end %>
 
 </div>
+
+
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
