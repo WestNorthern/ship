@@ -8,11 +8,20 @@ class BoatsController < ApplicationController
   end
 
   def show
+    @new_bj = BoatJob.new
   end
 
   def new
     @boat = Boat.new
   end
+
+  # def create
+  #   respond_to do |format|
+  #     @boat = Boat.create( boat_params )
+  #     @boat.user_id = current_user.id
+  #     format.js
+  #   end
+  # end
 
   def create
     @boat = Boat.create( boat_params )

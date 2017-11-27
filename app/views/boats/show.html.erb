@@ -17,3 +17,18 @@
     		</div>
   		</div>
 		</div>
+
+    <h1>Apply this Boat to a Job</h1>
+
+
+          <% boat.boat_jobs.each do |bj| %>
+            <div class="booking">
+            <% if bj %>
+              <p><%= bj.job.title %></p>
+              <%= link_to "Remove", bj, method: :delete, class: 'remove_booking', remote: true %>
+              <% else %>
+                <p>This boat is currently available.</p>  
+              <% end %> 
+
+            </div>
+          <% end %>

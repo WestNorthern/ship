@@ -4,6 +4,7 @@ Rails.application.routes.draw do
         registrations: 'users/registrations'
   }
 
+  resources :boat_jobs
   resources :boats
   resources :jobs
   resources :users, only: [:index, :show]

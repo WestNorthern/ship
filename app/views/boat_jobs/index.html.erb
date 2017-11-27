@@ -1,0 +1,125 @@
+<h1>Boat Job Index</h1>
+
+<h2>BOATS</h2>
+
+<table class="boats-table responsive-table highlight">
+  <thead>
+    <tr>
+        <th>Boat Name</th>
+        <th>Capacity</th>
+        <th>Current Location</th>
+        <th>Owner</th>
+        <th>Apply to Job</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @boats.each do |boat| %>
+    <tr class="boat-row i-couldnt-help-it">
+      <td><%= link_to "#{boat.name}", boat %></td>
+      <td>Capacity: <%= boat.capacity %></td>
+      <td>Current Location: <%= boat.location %></td>
+      <td><%= link_to "#{boat.user.full_name}", boat.user %></td>
+      <td>
+      	<div class="input-field col s10">
+      		<select>
+      			<option value="" disabled selected>Choose a Job</option>
+      			<% @jobs.each do |job| %>
+				  		<option value="<%= job.id %>"><%= job.job_name %></option>
+				  	<% end %>
+					</select>
+				</div>
+      </td>
+    </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<br>
+<br>
+<hr>
+<br>
+
+<h2>JOBS</h2>
+
+<table class="jobs-table responsive-table highlight">
+  <thead>
+    <tr>
+        <th>Job Name</th>
+        <th>Number of Containers</th>
+        <th>Cost</th>
+        <th>Poster</th>
+        <th>Hire a Boat</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+    <tr class="job-row">
+      <td><%= link_to "#{job.job_name}", job %></td>
+      <td><%= job.containers %> Containers</td>
+      <td>₪ <%= job.cost %>.00</td>
+      <td><%= link_to "#{job.user.full_name}", job.user %></td>
+      <td>
+        <div class="input-field col s10">
+          <%= form_with model: @new_bj, remote: true do |f| %>
+						<%= f.hidden_field :job_id, value: job.id %>
+						<%= f.select(:boat_id) do %>
+							<option value="" disabled selected>Select a Ship</option>
+							<% @boats.each do |boat| %>
+								<% if boat.available == false %>
+								<% else %>
+									<option value="<%= boat.id %>" class=""><%= boat.name %> | Containers: <%= boat.capacity %></option>
+									<% end %>
+							<% end %>
+						<% end %>
+						<%= f.submit 'Book Boat', class: 'btn waves-effect waves-light' %>
+					<% end %>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<br>
+<br>
+<hr>
+<br>
+
+<h2>Boats Assigned to Jobs</h2>
+
+
+<table class="jobs-table responsive-table highlight">
+  <thead>
+    <tr>
+        <th>Job</th>
+        <th>Boats</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+    <tr class="job-row">
+      <td><%= link_to job.job_name, job %></td>
+      <td>
+      	<% job.boats.each do |boat| %>
+      		<%= boat.name %> <br> <hr> <br>
+      	<% end %>
+      </td>
+    </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+
+
+
+<script>
+$(document).ready(function() {
+  $('select').material_select();
+});
+</script>
