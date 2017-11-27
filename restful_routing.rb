@@ -14,6 +14,14 @@ cancel_user_registration GET    /users/cancel(.:format)        users/registratio
                          PUT    /users(.:format)               users/registrations#update
                          DELETE /users(.:format)               users/registrations#destroy
                          POST   /users(.:format)               users/registrations#create
+               boat_jobs GET    /boat_jobs(.:format)           boat_jobs#index
+                         POST   /boat_jobs(.:format)           boat_jobs#create
+            new_boat_job GET    /boat_jobs/new(.:format)       boat_jobs#new
+           edit_boat_job GET    /boat_jobs/:id/edit(.:format)  boat_jobs#edit
+                boat_job GET    /boat_jobs/:id(.:format)       boat_jobs#show
+                         PATCH  /boat_jobs/:id(.:format)       boat_jobs#update
+                         PUT    /boat_jobs/:id(.:format)       boat_jobs#update
+                         DELETE /boat_jobs/:id(.:format)       boat_jobs#destroy
                    boats GET    /boats(.:format)               boats#index
                          POST   /boats(.:format)               boats#create
                 new_boat GET    /boats/new(.:format)           boats#new
@@ -22,6 +30,14 @@ cancel_user_registration GET    /users/cancel(.:format)        users/registratio
                          PATCH  /boats/:id(.:format)           boats#update
                          PUT    /boats/:id(.:format)           boats#update
                          DELETE /boats/:id(.:format)           boats#destroy
+                    jobs GET    /jobs(.:format)                jobs#index
+                         POST   /jobs(.:format)                jobs#create
+                 new_job GET    /jobs/new(.:format)            jobs#new
+                edit_job GET    /jobs/:id/edit(.:format)       jobs#edit
+                     job GET    /jobs/:id(.:format)            jobs#show
+                         PATCH  /jobs/:id(.:format)            jobs#update
+                         PUT    /jobs/:id(.:format)            jobs#update
+                         DELETE /jobs/:id(.:format)            jobs#destroy
                    users GET    /users(.:format)               users#index
                     user GET    /users/:id(.:format)           users#show
                     root GET    /                              home#index

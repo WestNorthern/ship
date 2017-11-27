@@ -42,7 +42,7 @@ class BoatJobsController < ApplicationController
       boat = Boat.find(@boat_job.boat.id)
       job_requirement = @boat_job.job.containers
       total_containers = 0
-      boat.update(available: false)
+      boat.update(available: true)
       @boat_job.job.boats.each do |boat|
         count = boat.capacity
         total_containers = count + total_containers

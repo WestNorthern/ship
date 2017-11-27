@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127221109) do
+ActiveRecord::Schema.define(version: 20171127231216) do
 
   create_table "boat_jobs", force: :cascade do |t|
     t.integer "boat_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20171127221109) do
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean "available"
+    t.integer "taken"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 

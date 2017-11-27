@@ -56,29 +56,32 @@
 
   <tbody>
     <% @jobs.each do |job| %>
-    <tr class="job-row">
-      <td><%= link_to "#{job.job_name}", job %></td>
-      <td><%= job.containers %> Containers</td>
-      <td>₪ <%= job.cost %>.00</td>
-      <td><%= link_to "#{job.user.full_name}", job.user %></td>
-      <td>
-        <div class="input-field col s10">
-          <%= form_with model: @new_bj, remote: true do |f| %>
-						<%= f.hidden_field :job_id, value: job.id %>
-						<%= f.select(:boat_id) do %>
-							<option value="" disabled selected>Select a Ship</option>
-							<% @boats.each do |boat| %>
-								<% if boat.available == false %>
-								<% else %>
-									<option value="<%= boat.id %>" class=""><%= boat.name %> | Containers: <%= boat.capacity %></option>
+	    <% if job.available == false %>
+	    <% else %>
+		    <tr class="job-row">
+		      <td><%= link_to "#{job.job_name}", job %></td>
+		      <td><%= job.containers %> Containers</td>
+		      <td>₪ <%= job.cost %>.00</td>
+		      <td><%= link_to "#{job.user.full_name}", job.user %></td>
+		      <td>
+		        <div class="input-field col s10">
+		          <%= form_with model: @new_bj, remote: true do |f| %>
+								<%= f.hidden_field :job_id, value: job.id %>
+								<%= f.select(:boat_id) do %>
+									<option value="" disabled selected>Select a Ship</option>
+									<% @boats.each do |boat| %>
+										<% if boat.available == false %>
+										<% else %>
+											<option value="<%= boat.id %>" class=""><%= boat.name %> | Containers: <%= boat.capacity %></option>
+											<% end %>
 									<% end %>
+								<% end %>
+								<%= f.submit 'Book Boat', class: 'btn waves-effect waves-light' %>
 							<% end %>
-						<% end %>
-						<%= f.submit 'Book Boat', class: 'btn waves-effect waves-light' %>
-					<% end %>
-        </div>
-      </td>
-    </tr>
+		        </div>
+		      </td>
+		    </tr>
+		  <% end %>
     <% end %>
     
   </tbody>
@@ -105,8 +108,9 @@
     <tr class="job-row">
       <td><%= link_to job.job_name, job %></td>
       <td>
-      	<% job.boats.each do |boat| %>
-      		<%= boat.name %> <br> <hr> <br>
+      	<% job.boat_jobs.each do |bj| %>
+      		<p></p> <%= bj.boat.name %> <br>
+      		<%= link_to "Nix Contract", bj, method: :delete, :class => 'destroy_boat', remote: true %> <hr> <br>
       	<% end %>
       </td>
     </tr>
