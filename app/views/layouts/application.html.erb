@@ -20,6 +20,8 @@
 		  <li class="divider"></li>
 		  <li><%= link_to "Create New Job", new_job_path %></li>
 		  <li class="divider"></li>
+
+		  <li class="divider"></li>
 		</ul>
 	  <div class="navbar-fixed">
 		  <nav class="red accent-2" >
@@ -30,9 +32,9 @@
 		          <li><a href="#">Ship</a></li>
 		          </ul>
 		        </div>
-		        <div class="col s5">
+		        <div class="col s3">
 		        </div>
-		        <div class="col s5">
+		        <div class="col s7">
 		          <ul class="right">
 		            <% if user_signed_in? %>
 		      				<li>
@@ -44,6 +46,7 @@
 		      					<li> <%= link_to "User Index", users_path %></li>
 		      					<li> <%= link_to "Boats Index", boats_path %></li>
 		      					<li> <%= link_to "Jobs Index", jobs_path %></li>
+		      					<li><%= link_to "BJs", boat_jobs_path %></li>
 		      				</li>
 	        			<% else %>
 	        				<li><%= link_to "Log In", new_user_session_path %></li>
