@@ -37,13 +37,13 @@
 
 	
 
-	<%= f.label :avatar, "You must include a glorious photograph..." %>
+	<%= f.label :avatar, "You must include a glorious photograph:" %>
 
 	<br>
 	<br>
 
-
-	<%= f.select(:location, @locations, {}, { :class => 'btn waves-effect waves-light cyan darken-1' }) %>
+	<%= f.label :location, "Choose a location to build the boat:" %>
+	<%= f.select(:location, @locations, {:disabled => "", :selected => ""}, { :class => 'waves-effect waves-light' }) %>
 
 	<br>
 	<br>

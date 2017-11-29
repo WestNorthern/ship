@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_variables
 
 	def set_variables
-	  @locations = ["Yonaguni", "Dunwich", "Miskatonic Cove", "Arizona Bay", "Alexandria", "Antikythera"]
+	  @locations = ["", "Yonaguni", "Dunwich", "Miskatonic Cove", "Arizona Bay", "Alexandria", "Antikythera", "Meigami", "Hagakure", "Tyre", "Chagatai", "London", "Portland"]
 	end
 
   

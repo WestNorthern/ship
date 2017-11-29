@@ -18,6 +18,7 @@ class BoatJobsController < ApplicationController
 	def create
   	respond_to do |format|
 	  	@boat_job = BoatJob.create(boat_job_params)
+      @newbj = Job.find_by(id: boat_job_params[:job_id])
 	  	job = Job.find(@boat_job.job.id)
 	  	boat = Boat.find(@boat_job.boat.id)
 	  	boat.update(available: false)
@@ -30,6 +31,7 @@ class BoatJobsController < ApplicationController
           job.update(available: false)
         end
       end
+      format.html { redirect_to root_path }
       format.js
   	end
 
@@ -45,12 +47,14 @@ class BoatJobsController < ApplicationController
       boat.update(available: true)
       @boat_job.job.boats.each do |boat|
         count = boat.capacity
-        total_containers = count + total_containers
+        total_containers = total_containers - count
         if total_containers <= job_requirement
           job.update(available: true)
         end
       end
-      format.js # destroy.js.erb
+
+      format.js 
+      format.html { redirect_to root_path }
     end
 
   end
