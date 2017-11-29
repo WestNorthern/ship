@@ -1,0 +1,13 @@
+
+
+<tr class="newbj">
+	<div class="boat-loaded">
+      <td><%= link_to job.job_name, job %></td>
+      <td>
+      	<% job.boat_jobs.each do |bj| %>
+      		<p></p> <%= bj.boat.name %> <br>
+      		<%= link_to "Nix Contract", bj, method: :delete, :class => 'destroy_boat_job just-added', remote: true %> <hr> <br>
+      	<% end %>
+      </td>
+  </div>
+</tr>
