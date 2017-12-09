@@ -7,9 +7,15 @@
 
 		<div class="user">
 			<div class="card small">
-    <div class="card-image waves-effect waves-block waves-light">
-      <%= image_tag user.avatar.url, :class => 'activator' %>
-    </div>
+    <% if @user.avatar.exists? %>
+      <div class="card-image waves-effect waves-block waves-light activator">
+        <%= image_tag @user.avatar.url %>
+      </div>
+    <% else %>
+      <div class="card-image waves-effect waves-block waves-light activator">
+        <%= image_tag 'defship.jpg' %>
+      </div>
+    <% end %>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4"><%= user.full_name %><i class="material-icons right">more_vert</i></span>
     </div>
