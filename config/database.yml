@@ -24,6 +24,6 @@ production:
   <<: *default
   adapter: postgresql
   database: ship_production
-  password: <%= ENV["SHIP_PASSWORD"] %>
+  password: 'password'
   username: ship
 
