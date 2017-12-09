@@ -24,5 +24,4 @@
 
 restful_routing.rb
 
-# Ignore encrypted secrets key file.
-config/secrets.yml.key
+
