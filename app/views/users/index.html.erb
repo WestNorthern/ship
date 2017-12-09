@@ -7,9 +7,9 @@
 
 		<div class="user">
 			<div class="card small">
-    <% if @user.avatar.exists? %>
+    <% if user.avatar.exists? %>
       <div class="card-image waves-effect waves-block waves-light activator">
-        <%= image_tag @user.avatar.url %>
+        <%= image_tag user.avatar.url %>
       </div>
     <% else %>
       <div class="card-image waves-effect waves-block waves-light activator">
