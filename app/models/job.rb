@@ -7,7 +7,7 @@ class Job < ApplicationRecord
 	validates :job_description, presence: true, length: { minimum: 50 }
 	validates :origin, presence: true
 	validates :destination, presence: true
-	validates :cost, presence: true, numericality: { greater_than: 999 }
+	validates :cost, presence: true, numericality: { greater_than: 1000 }
 	validates :containers, presence: true, numericality: { greater_than: 1, only_integer: true }
 
 	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
